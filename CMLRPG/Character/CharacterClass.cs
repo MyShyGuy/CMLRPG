@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CMLRPG.Enemy;
 
 namespace CMLRPG.Character
 {
@@ -10,7 +11,7 @@ namespace CMLRPG.Character
     {
         public string Name { get; private set; }
         public string Archetyp { get; private set; }
-        public int Health { get; private set; }
+        public int Health { get; set; }
         public int MaxHealth { get; private set; }
         public int MinHealth { get; private set; }
         public int Attack { get; private set; }
@@ -40,10 +41,20 @@ namespace CMLRPG.Character
             this.Defense = Defense;
         }
 
-        public int AttackTarget()
+        public void AttackTarget(CharacterClass player, EnemyClass enemy)
         {
-            return Attack;
+            if (enemy.Defense >= player.Attack)
+            {
+                Console.WriteLine("Der Gegner hat eine zu gute verteidigung du machst keinen Schaden!");
+            }
+            else
+            {
+                int AtkDMG = player.Attack - enemy.Defense;
+                enemy.Health -= AtkDMG;
+                Console.WriteLine($"Du hast dem Gegner {AtkDMG} Schaden gemacht");
+            }
         }
+
 
         public int DefendAgainstTarget()
         {
@@ -53,7 +64,7 @@ namespace CMLRPG.Character
 
         public void Run()
         {
-            Health = Health - 10;
+            Health -= 10;
         }
 
         public void Eat()
