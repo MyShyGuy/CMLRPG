@@ -8,34 +8,30 @@ class Program
 {
     public static void Main(string[] args)
     {
+        /* Characktererstellung */
+        Console.WriteLine("Hello, and Welcome to my Gatcha RPG!");
+        Console.WriteLine("Please give me the name of your Hero: ");
+        string? Name = "Sir ";
+        bool inputvalid = false;
+        do
+        {
+            string? inputName = Console.ReadLine();
+            if (inputName != string.Empty)
+            {
+                Name += inputName;
+                inputvalid = true;
+            }
+        } while (!inputvalid);
 
+        /* Erstelle charakter und battle Objekte */
+        BattleSystem Battle1 = new BattleSystem();
+        CharacterClass char1 = new CharacterClass(Name, "Knight", "M");
+        EnemyClass Enemy = new EnemyClass();
+        Console.WriteLine("heres your first test battle:");
+        Console.ReadKey();
 
-        Warrior Spieler2 = new Warrior("MyShyGuy");
-        Console.WriteLine($"Name: {Spieler2.Name}");
-        Console.WriteLine($"Health: {Spieler2.Health}");
-        Console.WriteLine($"Attack: {Spieler2.Attack}");
-        Console.WriteLine($"Defense: {Spieler2.Defense}");
-        Console.WriteLine($"Typ: {Spieler2.Archetyp}");
-        Console.WriteLine("");
+        int battleResult = Battle1.startFightSystem(char1, Enemy);
 
-        Slime Enemy1 = new Slime();
-        Console.WriteLine($"Name: {Enemy1.Name}");
-        Console.WriteLine($"Health: {Enemy1.Health}");
-        Console.WriteLine($"Attack: {Enemy1.Attack}");
-        Console.WriteLine($"Defense: {Enemy1.Defense}");
-        Console.WriteLine($"Typ: {Enemy1.Archetyp}");
-        Console.WriteLine("");
-
-        Console.WriteLine("Ziel wird angegriffen!");
-        Spieler2.AttackTarget(Spieler2, Enemy1);
-        Enemy1.AttackTarget(Enemy1, Spieler2);
-        Console.WriteLine("das ziel ist zu mächtig!!! renn lieber los!");
-        Console.WriteLine("du rennst los");
-        Spieler2.Run();
-        Console.WriteLine("du bist entkommen!");
-        Console.WriteLine($"dein Leben ist auf {Spieler2.Health}");
-        Spieler2.Eat();
-        Console.WriteLine($"dein Leben ist auf {Spieler2.Health}");
-
+        Console.WriteLine(battleResult);
     }
 }

@@ -1,0 +1,20 @@
+int numericValue = 0;
+bool validNumber = false;
+bool range = false;
+string? readResult;
+
+
+do
+{
+	Console.Write("Type a number between 5 - 10:");
+	readResult = Console.ReadLine();
+
+	validNumber = int.TryParse(readResult, out numericValue);
+	Console.WriteLine($"your number:{numericValue}");
+	if ((numericValue >= 5) && (numericValue <= 10))
+	{
+		range = true;
+		Console.WriteLine("Nice one");
+	}
+
+} while (!validNumber || !range);

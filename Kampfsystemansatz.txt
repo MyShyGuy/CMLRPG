@@ -1,0 +1,45 @@
+Random random = new Random();
+
+int PlayerHealth = 10;
+int EnemyHealth = 10;
+int Health = 10;
+
+bool IsWinner = false;
+
+
+Console.WriteLine("Health Player:\t\tHealth Enemy:");
+Console.WriteLine($"{PlayerHealth}\t\t\t{EnemyHealth}\n");
+
+
+
+while (!IsWinner)
+{
+
+	//Health = PlayerHealth;
+
+	int Atk = random.Next(1, 11);
+	Console.WriteLine($"The Player attacks the Enemy and deals {Atk} dmg!");
+	EnemyHealth -= Atk;
+	Console.WriteLine("Health Player:\t\tHealth Enemy:");
+	Console.WriteLine($"{PlayerHealth}\t\t\t{EnemyHealth}\n");
+	if (EnemyHealth <= 0)
+	{
+		IsWinner = true;
+		Console.WriteLine("The Hero has won!");
+		break;
+	}
+
+	//Health = EnemyHealth;
+	Atk = random.Next(1, 11);
+	Console.WriteLine($"The Enemy attacks the Player and deals {Atk} dmg!");
+	PlayerHealth -= Atk;
+
+	Console.WriteLine("Health Player:\t\tHealth Enemy:");
+	Console.WriteLine($"{PlayerHealth}\t\t\t{EnemyHealth}\n");
+	if (PlayerHealth <= 0)
+	{
+		IsWinner = true;
+		Console.WriteLine("The Enemy has won!");
+		break;
+	}
+}
